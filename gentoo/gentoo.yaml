@@ -6,15 +6,17 @@ variables:
   use: bindist mmx sse sse2 systemd
   profile: default/linux/amd64/13.0
   timezone: Asia/Tokyo
+  hostname: packer
   locale: en_US.UTF-8
+  keymap: jp106
   root_passwd: packer
 
 builders_base: &builders_base
   vm_name: Gentoo
   boot_wait: 5s
   boot_command:
-    - <enter><wait10>
     - <enter><wait10><wait10>
+    - <enter><wait10><wait10><wait10>
     - passwd<enter><wait>
     - packer<enter><wait>packer<enter>
   iso_url: 'http://downloads.sourceforge.net/project/systemrescuecd/sysresccd-x86/4.0.0/systemrescuecd-x86-4.0.0.iso'
@@ -49,6 +51,8 @@ provisioners:
     - 'GENTOO_USE="{{user `use`}}"'
     - 'GENTOO_PROFILE="{{user `profile`}}"'
     - 'GENTOO_TIMEZONE="{{user `timezone`}}"'
+    - 'GENTOO_HOSTNAME="{{user `hostname`}}"'
+    - 'GENTOO_KEYMAP="{{user `keymap`}}"'
     - 'GENTOO_LOCALE="{{user `locale`}}"'
     - 'GENTOO_ROOT_PASSWD="{{user `root_passwd`}}"'
   scripts:
@@ -58,19 +62,20 @@ provisioners:
     - scripts/make_conf.sh
     - scripts/chroot.sh
     - scripts/portage.sh
-    - scripts/timezone.sh
-    - scripts/locale.sh
     - scripts/systemd.sh
+    - scripts/timezone.sh
     - scripts/upgrade.sh
     - scripts/kernel.sh
     - scripts/fstab.sh
     - scripts/network.sh
     - scripts/grub.sh
     - scripts/passwd.sh
-    - scripts/reboot.sh
+    - scripts/settings.sh
+    - scripts/sshd.sh
     - scripts/salt.sh
-- type: salt-masterless
-  skip_bootstrap: True
-  local_state_tree: /Users/aostanin/Sync/saltstack/salt
-  local_pillar_roots: /Users/aostanin/Sync/saltstack/pillar
+    # - scripts/reboot.sh
+#- type: salt-masterless
+#  skip_bootstrap: True
+#  local_state_tree: /Users/aostanin/Sync/saltstack/salt
+#  local_pillar_roots: /Users/aostanin/Sync/saltstack/pillar
 
