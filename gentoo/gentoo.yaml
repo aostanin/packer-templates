@@ -1,5 +1,6 @@
 variables:
-  build: '20140403'
+  vm_name: Gentoo
+  build: '20140515'
   iso_checksum: ddef2ef386ab6f9ddab9da8735d8671cfbe8c36a9ffce4b62ddde1f506b8672265c316f2e2cda21148f59133dc7fe4ce1ed3d840a6acd894910c5851f6eb01a1
   mirror: http://ftp.iij.ad.jp/pub/linux/gentoo
   march: core2
@@ -10,9 +11,10 @@ variables:
   locale: en_US.UTF-8
   keymap: jp106
   root_passwd: packer
+  disk_size: 85899345920
 
 builders_base: &builders_base
-  vm_name: Gentoo
+  vm_name: "{{user `vm_name`}}"
   boot_wait: 5s
   boot_command:
     - <enter><wait10><wait10>
@@ -25,6 +27,7 @@ builders_base: &builders_base
   ssh_username: root
   ssh_password: packer
   shutdown_command: shutdown -h now
+  disk_size: {{user `disk_size`}}
 
 builders:
 - <<: *builders_base
