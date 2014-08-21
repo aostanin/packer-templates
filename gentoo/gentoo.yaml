@@ -1,6 +1,6 @@
 variables:
   vm_name: Gentoo
-  build: '20140515'
+  build: '20140814'
   iso_checksum: ddef2ef386ab6f9ddab9da8735d8671cfbe8c36a9ffce4b62ddde1f506b8672265c316f2e2cda21148f59133dc7fe4ce1ed3d840a6acd894910c5851f6eb01a1
   mirror: http://ftp.iij.ad.jp/pub/linux/gentoo
   march: core2
