@@ -11,7 +11,7 @@ variables:
   locale: en_US.UTF-8
   keymap: jp106
   root_passwd: packer
-  disk_size: 85899345920
+  disk_size: 81920
 
 builders_base: &builders_base
   vm_name: "{{user `vm_name`}}"
@@ -27,7 +27,7 @@ builders_base: &builders_base
   ssh_username: root
   ssh_password: packer
   shutdown_command: shutdown -h now
-  disk_size: {{user `disk_size`}}
+  disk_size: "{{user `disk_size`}}"
 
 builders:
 - <<: *builders_base
