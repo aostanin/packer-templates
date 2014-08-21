@@ -1,6 +1,7 @@
 #! /bin/bash
 
 chroot /mnt/gentoo /bin/bash <<EOF
+mkdir -p /var/run/dbus
 /usr/bin/dbus-daemon --system
 /usr/lib/systemd/systemd-localed &
 /usr/lib/systemd/systemd-timedated &
