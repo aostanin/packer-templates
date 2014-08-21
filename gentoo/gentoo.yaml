@@ -70,15 +70,10 @@ provisioners:
     - scripts/upgrade.sh
     - scripts/kernel.sh
     - scripts/fstab.sh
-    - scripts/network.sh
     - scripts/grub.sh
     - scripts/passwd.sh
     - scripts/settings.sh
     - scripts/sshd.sh
     - scripts/salt.sh
-    # - scripts/reboot.sh
-#- type: salt-masterless
-#  skip_bootstrap: True
-#  local_state_tree: /Users/aostanin/Sync/saltstack/salt
-#  local_pillar_roots: /Users/aostanin/Sync/saltstack/pillar
+    - scripts/network.sh
 
